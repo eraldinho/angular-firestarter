@@ -9,6 +9,7 @@ import { ItemService } from './item.service';
 import { ItemsListComponent } from '../items-list/items-list.component';
 import { ItemFormComponent } from '../item-form/item-form.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
+import { TaskListPipe } from '../../task-list.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ItemDetailComponent } from '../item-detail/item-detail.component';
     ItemsListComponent,
     ItemFormComponent,
     ItemDetailComponent,
+    TaskListPipe,
   ],
   providers: [
     ItemService

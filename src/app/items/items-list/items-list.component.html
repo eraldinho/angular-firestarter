@@ -2,11 +2,12 @@
 
 <p>This page is a demo of a very basic todo list in Angular, using the Firebase Realtime DB on the backend.</p>
 
-<div *ngFor="let item of items | async" class="card">
+<div *ngFor="let item of items | async | taskList" class="card">
   <item-detail [item]='item'></item-detail>
 </div>
 
-<loading-spinner *ngIf="showSpinner"></loading-spinner>
+<loading-spinner *ngIf=
+                   "showSpinner"></loading-spinner>
 
 
 
