@@ -14,26 +14,27 @@ export class TaskListPipe implements PipeTransform {
     if (items) {
       myitems = items.sort(this.comparator);
       previousTime = this.setMidnight(myitems[0].timeStamp);
-      console.log(previousTime);
-      nextTime = previousTime - 86400000;
       let myitem: Item = new Item;
       myitem.timeStamp = previousTime;
       myitem.title = new Date(previousTime).toDateString();
       myitemsComplete.push(myitem);
+      nextTime = previousTime - 86400000;
       for (let i = 0; i < myitems.length; i++) {
         if (myitems[i].timeStamp < nextTime) {
-          console.log('bim ' + i);
           myitem = new Item;
           myitem.timeStamp = nextTime;
           myitem.title = new Date(nextTime).toDateString();
           myitemsComplete.push(myitem);
           nextTime = nextTime - 86400000;
-          /*while (myitems[i].timeStamp > nextTime) {
+          while (myitems[i].timeStamp < nextTime) {
+            myitem = new Item;
             myitem.timeStamp = nextTime;
+            myitem.title = new Date(nextTime).toDateString();
             myitemsComplete.push(myitem);
-            nextTime = nextTime + 86400000;
-          }*/
+            nextTime = nextTime - 86400000;
+          }
         }
+        console.log('bim ' + i);
         myitemsComplete.push(myitems[i]);
         if (i === myitems.length - 1) {
           console.log('return');
@@ -48,10 +49,10 @@ export class TaskListPipe implements PipeTransform {
   }
   setMidnight(mytime: number): number {
     const mydate = new Date (mytime);
-    mydate.setHours(0);
-    mydate.setMinutes(0);
-    mydate.setSeconds(0);
-    mydate.setMilliseconds(0);
+    mydate.setHours(23);
+    mydate.setMinutes(59);
+    mydate.setSeconds(59);
+    mydate.setMilliseconds(999);
     return (mydate.getTime());
   }
 
