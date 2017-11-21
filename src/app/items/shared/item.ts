@@ -4,4 +4,6 @@ export class Item {
   body: string;
   active = true;
   timeStamp: number;
+  isItem = true;
+  itemClass: string;
 }

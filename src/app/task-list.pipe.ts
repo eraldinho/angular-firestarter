@@ -12,26 +12,32 @@ export class TaskListPipe implements PipeTransform {
     let previousTime: number;
     let nextTime: number
     if (items) {
-      myitems = items.sort(this.comparator);
-      previousTime = this.setMidnight(myitems[0].timeStamp);
+      myitems = items.sort(this.comparator); // on classe du plus ancien au plus recent
+      previousTime = this.setMidnight(myitems[0].timeStamp); // 1er intercalaire à la date la plus ancienne et on fixe l'heure à minuit
       let myitem: Item = new Item;
       myitem.timeStamp = previousTime;
       myitem.title = new Date(previousTime).toDateString();
+      myitem.isItem = false;
+      myitem.itemClass = 'intercalaire';
       myitemsComplete.push(myitem);
-      nextTime = previousTime - 86400000;
+      nextTime = previousTime + 86400000; // intercalaire suivant = intercalaire + 24h
       for (let i = 0; i < myitems.length; i++) {
-        if (myitems[i].timeStamp < nextTime) {
+        if (myitems[i].timeStamp > nextTime) {
           myitem = new Item;
           myitem.timeStamp = nextTime;
           myitem.title = new Date(nextTime).toDateString();
+          myitem.isItem = false;
+          myitem.itemClass = 'intercalaire';
           myitemsComplete.push(myitem);
-          nextTime = nextTime - 86400000;
-          while (myitems[i].timeStamp < nextTime) {
+          nextTime = nextTime + 86400000;
+          while (myitems[i].timeStamp > nextTime) {
             myitem = new Item;
             myitem.timeStamp = nextTime;
             myitem.title = new Date(nextTime).toDateString();
+            myitem.isItem = false;
+            myitem.itemClass = 'intercalaire';
             myitemsComplete.push(myitem);
-            nextTime = nextTime - 86400000;
+            nextTime = nextTime + 86400000;
           }
         }
         console.log('bim ' + i);
@@ -45,14 +51,14 @@ export class TaskListPipe implements PipeTransform {
     }
   }
   comparator(a, b) {
-    return parseInt(b.timeStamp, 10) - parseInt(a.timeStamp, 10);
+    return parseInt(a.timeStamp, 10) - parseInt(b.timeStamp, 10);
   }
   setMidnight(mytime: number): number {
     const mydate = new Date (mytime);
-    mydate.setHours(23);
-    mydate.setMinutes(59);
-    mydate.setSeconds(59);
-    mydate.setMilliseconds(999);
+    mydate.setHours(0);
+    mydate.setMinutes(0);
+    mydate.setSeconds(0);
+    mydate.setMilliseconds(0);
     return (mydate.getTime());
   }
 
