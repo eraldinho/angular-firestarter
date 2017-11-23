@@ -1,20 +1,21 @@
 <div class="card-title">
-  <h3 [ngClass]="{ 'strike-out': !item.active, 'intercalaire': !item.isItem }">
+  <h3 [ngClass]="{ 'strike-out': !item.active, 'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
     {{ item.title || 'missing title' }}
   </h3>
 </div>
 
 
-<div class="card-content" *ngIf="item.isItem">
+
+<div class="card-content" *ngIf="!item.isNotItem">
 
   Task Active?: {{ item.active }}<br>
   {{ item.timeStamp | date: 'medium' }}
 
 </div>
 
-<div class="card-footer" *ngIf="item.isItem">
-  <span class="button is-small is-info card-footer-item" (click)='updateTimeStamp()'>Update Timestamp</span>
-  <span class="button is-small is-success card-footer-item" *ngIf='item.active' (click)='updateActive(false)'>Mark Complete</span>
-  <span class="button is-small is-warning card-footer-item" *ngIf='!item.active' (click)='updateActive(true)'>Mark Incomplete</span>
-  <span class="button is-small is-danger card-footer-item" (click)='deleteItem()'>Delete</span>
+<div class="card-footer" *ngIf="!item.isNotItem">
+  <span class="button is-small is-outlined card-footer-item" (click)='updateTimeStamp()'>Update Timestamp</span>
+  <span class="button is-small is-light card-footer-item" *ngIf='item.active' (click)='updateActive(false)'>Mark Complete</span>
+  <span class="button is-small is-light card-footer-item" *ngIf='!item.active' (click)='updateActive(true)'>Mark Incomplete</span>
+  <span class="button is-small is-light card-footer-item" (click)='deleteItem()'>Delete</span>
 </div>

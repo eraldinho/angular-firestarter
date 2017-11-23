@@ -9,6 +9,8 @@ export class TaskListPipe implements PipeTransform {
   transform(items: Array<any>): Array<any> {
     let myitems: Array<any>;
     const myitemsComplete: Array<any> = [];
+    const today = this.setMidnight(new Date().getTime());
+    console.log('today:  ' + today);
     let previousTime: number;
     let nextTime: number
     if (items) {
@@ -17,8 +19,14 @@ export class TaskListPipe implements PipeTransform {
       let myitem: Item = new Item;
       myitem.timeStamp = previousTime;
       myitem.title = new Date(previousTime).toDateString();
-      myitem.isItem = false;
-      myitem.itemClass = 'intercalaire';
+      myitem.isNotItem = true;
+      if (previousTime < today) {
+        myitem.beHurry = true;
+      }else if (previousTime === today) {
+        myitem.beQuick = true;
+      }else if (previousTime > today) {
+        myitem.beCool = true;
+      }
       myitemsComplete.push(myitem);
       nextTime = previousTime + 86400000; // intercalaire suivant = intercalaire + 24h
       for (let i = 0; i < myitems.length; i++) {
@@ -26,16 +34,28 @@ export class TaskListPipe implements PipeTransform {
           myitem = new Item;
           myitem.timeStamp = nextTime;
           myitem.title = new Date(nextTime).toDateString();
-          myitem.isItem = false;
-          myitem.itemClass = 'intercalaire';
+          myitem.isNotItem = true;
+          if (nextTime < today) {
+            myitem.beHurry = true;
+          }else if (nextTime === today) {
+            myitem.beQuick = true;
+          }else if (nextTime > today) {
+            myitem.beCool = true;
+          }
           myitemsComplete.push(myitem);
           nextTime = nextTime + 86400000;
           while (myitems[i].timeStamp > nextTime) {
             myitem = new Item;
             myitem.timeStamp = nextTime;
             myitem.title = new Date(nextTime).toDateString();
-            myitem.isItem = false;
-            myitem.itemClass = 'intercalaire';
+            myitem.isNotItem = true;
+            if (nextTime < today) {
+              myitem.beHurry = true;
+            }else if (nextTime === today) {
+              myitem.beQuick = true;
+            }else if (nextTime > today) {
+              myitem.beCool = true;
+            }
             myitemsComplete.push(myitem);
             nextTime = nextTime + 86400000;
           }

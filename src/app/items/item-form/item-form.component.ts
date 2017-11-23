@@ -18,6 +18,7 @@ export class ItemFormComponent implements OnInit {
   }
 
   createItem() {
+    this.item.timeStamp = new Date().getTime();
     this.itemSvc.createItem(this.item)
     this.item = new Item() // reset item
   }

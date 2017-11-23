@@ -4,6 +4,9 @@ export class Item {
   body: string;
   active = true;
   timeStamp: number;
-  isItem = true;
-  itemClass: string;
+  isNotItem = false;
+  beCool= false;
+  beQuick= false;
+  beHurry= false;
+
 }
