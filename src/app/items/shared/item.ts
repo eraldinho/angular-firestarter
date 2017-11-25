@@ -8,5 +8,9 @@ export class Item {
   beCool= false;
   beQuick= false;
   beHurry= false;
+  sav= false;
+  montage= false;
+  relC= false;
+  compta= false;
 
 }

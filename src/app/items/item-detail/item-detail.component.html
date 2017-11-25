@@ -1,10 +1,22 @@
-<div class="card-title" >
-  <h3 [ngClass]="{ 'strike-out': !item.active, 'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
-    {{ item.title || 'missing title' }}
-  </h3>
+<div class="card-header" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
+  <div class="tile is-ancestor">
+    <div class="tile is-parent is-horizontal">
+      <div class="tile is-horizontal" *ngIf="!item.isNotItem">
+        <span class="icon" style="height: 2.1rem">
+          <i class="material-icons" *ngIf="item.compta">add_alert</i>
+          <i class="material-icons" *ngIf="item.sav">build</i>
+          <i class="material-icons" *ngIf="item.relC">face</i>
+          <i class="material-icons" *ngIf="item.montage">extension</i>
+        </span>
+      </div>
+      <div  class="tile is-horizontal is-12"  [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
+        <h3 [ngClass]="{ 'strike-out': !item.active, 'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
+          {{ item.title || 'missing title' }}
+        </h3>
+      </div>
+    </div>
+  </div>
 </div>
-
-
 
 <div class="card-content" *ngIf="!item.isNotItem">
 
@@ -15,7 +27,8 @@
 
 <div class="card-footer" *ngIf="!item.isNotItem">
   <span class="button is-small is-outlined card-footer-item" (click)='updateTimeStamp()'>Update Timestamp</span>
-  <span class="button is-small is-light card-footer-item" *ngIf='item.active' (click)='updateActive(false)'>Mark Complete</span>
-  <span class="button is-small is-light card-footer-item" *ngIf='!item.active' (click)='updateActive(true)'>Mark Incomplete</span>
-  <span class="button is-small is-light card-footer-item" (click)='deleteItem()'>Delete</span>
+  <span class="button is-small is-outlined card-footer-item" *ngIf='item.active' (click)='updateActive(false)'>Mark Complete</span>
+  <span class="button is-small is-outlined card-footer-item" *ngIf='!item.active' (click)='updateActive(true)'>Mark Incomplete</span>
+  <span class="button is-small is-outlined card-footer-item" (click)='deleteItem()'>Delete</span>
 </div>
+

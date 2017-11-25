@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ItemService } from '../shared/item.service';
 import { Item } from '../shared/item';
+import 'material-design-icons'
 
 @Component({
   selector: 'item-detail',
