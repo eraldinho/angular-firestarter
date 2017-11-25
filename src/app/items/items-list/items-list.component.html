@@ -2,7 +2,7 @@
 
 
 
-<div *ngFor="let item of items | async | taskList" class="card">
+<div *ngFor="let item of items | async | taskList" class="card" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
   <item-detail [item]='item'></item-detail>
 </div>
 
