@@ -1,4 +1,4 @@
-<div class="card-header" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}">
+<div class="card-header" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry}" style="height: 30px">
   <div class="tile is-ancestor">
     <div class="tile is-parent is-horizontal">
       <div class="tile is-horizontal" *ngIf="!item.isNotItem">
@@ -26,9 +26,8 @@
 </div>
 
 <div class="card-footer" *ngIf="!item.isNotItem">
-  <span class="button is-small is-outlined card-footer-item" (click)='updateTimeStamp()'>Update Timestamp</span>
-  <span class="button is-small is-outlined card-footer-item" *ngIf='item.active' (click)='updateActive(false)'>Mark Complete</span>
-  <span class="button is-small is-outlined card-footer-item" *ngIf='!item.active' (click)='updateActive(true)'>Mark Incomplete</span>
-  <span class="button is-small is-outlined card-footer-item" (click)='deleteItem()'>Delete</span>
+  <span class="button is-small is-outlined card-footer-item" (click)='voir()'>Voir</span>
+  <span class="button is-small is-outlined card-footer-item" *ngIf='item.active' (click)='reporter(false)'>Reporter</span>
+  <span class="button is-small is-outlined card-footer-item" (click)='finaliser()'>Finaliser</span>
 </div>
 
