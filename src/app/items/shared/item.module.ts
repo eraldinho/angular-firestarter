@@ -11,6 +11,7 @@ import { ItemFormComponent } from '../item-form/item-form.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
 import { TaskListPipe } from '../../task-list.pipe';
 import {ItemFilterComponent} from '../item-filter/item-filter.component';
+import { ItemFilterPipePipe } from './item-filter-pipe.pipe';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {ItemFilterComponent} from '../item-filter/item-filter.component';
     ItemDetailComponent,
     ItemFilterComponent,
     TaskListPipe,
+    ItemFilterPipePipe,
   ],
   providers: [
     ItemService

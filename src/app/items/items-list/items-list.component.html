@@ -1,7 +1,10 @@
+<nav class="level">
+  <div class="level-left">
+    <h1>{{ (items | async | itemFilterPipe)?.length }} taches en attentes</h1>
+  </div>
+</nav>
 <item-filter></item-filter>
-<h1>{{ (items | async)?.length }} taches en attentes</h1>
-
-<div *ngFor="let item of items | async | taskList" class="card" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry, 'compta': item.compta, 'sav': item.sav, 'relC': item.relC, 'montage': item.montage}">
+<div *ngFor="let item of items | async | taskList | itemFilterPipe" class="card" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry, 'compta': item.compta, 'sav': item.sav, 'relC': item.relC, 'montage': item.montage}">
   <item-detail [item]='item'></item-detail>
 </div>
 
