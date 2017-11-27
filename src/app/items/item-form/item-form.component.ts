@@ -17,6 +17,14 @@ export class ItemFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSave() {
+    document.getElementById('itemFormModal').classList.remove('is-active');
+  }
+
+  onCancel() {
+    document.getElementById('itemFormModal').classList.remove('is-active');
+  }
+
   createItem() {
     this.item.timeStamp = new Date().getTime();
     this.itemSvc.createItem(this.item)

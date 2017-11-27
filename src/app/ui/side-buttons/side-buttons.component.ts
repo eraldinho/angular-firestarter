@@ -12,4 +12,8 @@ export class SideButtonsComponent implements OnInit {
   ngOnInit() {
   }
 
+  addTask() {
+    document.getElementById('itemFormModal').classList.add('is-active');
+  }
+
 }
