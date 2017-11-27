@@ -1,5 +1,5 @@
 <item-filter [items] = 'items'></item-filter>
-<div *ngFor="let item of items | async | taskList | itemFilterPipe:itemFilter.filtre" class="card" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry, 'compta': item.compta, 'sav': item.sav, 'relC': item.relC, 'montage': item.montage}">
+<div *ngFor="let item of items | async | taskList | itemFilterPipe:itemFilter.filtre:itemFilter.tType" class="card" [ngClass]="{'cool': item.beCool, 'quick': item.beQuick, 'hurry': item.beHurry, 'compta': item.compta, 'sav': item.sav, 'relC': item.relC, 'montage': item.montage}">
   <item-detail [item]='item'></item-detail>
 </div>
 

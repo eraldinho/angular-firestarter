@@ -5,15 +5,38 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ItemFilterPipePipe implements PipeTransform {
 
-  transform(items: Array<any>, filtre: any): Array<any> {
+  transform(items: Array<any>, filtre: string, type: string): Array<any> {
     if (items) {
+      console.log('montype   :' + type);
       return items.filter(item => {
-        if (filtre) {
-          if (item.title.indexOf(filtre) === -1) { // si la chaine de recherche n'est pas contenue dans le pinyin sans accent
+        if (filtre && type) {
+          console.log('les deux');
+          if (item.beCool || item.beQuick || item.beHurry) {
+            return true;
+          }else if (item.title.indexOf(filtre) === -1 || !item[type]) {
             return false;
           }
+          return true;
+        }else if (filtre) {
+          console.log('filtre');
+          if (item.beCool || item.beQuick || item.beHurry) {
+            return true;
+          }else if (item.title.indexOf(filtre) === -1) {
+            return false;
+          }
+          return true;
+        }else if (type) {
+          console.log('badadadammontype');
+          console.log(item[type])
+          if (item.beCool || item.beQuick || item.beHurry) {
+            return true;
+          }else if (!item[type]) {
+            return false;
+          }
+          return true;
+        }else {
+          return true;
         }
-        return true;
       });
     }
   }

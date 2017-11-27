@@ -33,11 +33,13 @@ export const firebaseConfig = environment.firebaseConfig;
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FormsModule } from '@angular/forms';
 import { TasklistComponent } from './tasklist/tasklist.component';
+import { SideButtonsComponent } from './ui/side-buttons/side-buttons.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasklistComponent,
+    SideButtonsComponent,
   ],
   imports: [
     BrowserModule,

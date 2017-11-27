@@ -2,8 +2,8 @@
   <div class="level-left">
     Type:
     <div class="select">
-      <select>
-        <option>Tout</option>
+      <select [(ngModel)]="tType">
+        <option value="">Tout</option>
         <option value="sav">SAV</option>
         <option value="relC">Client</option>
         <option value="montage">Montage</option>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="level-component">
-    {{ (items | async | itemFilterPipe:filtre)?.length }} taches
+    {{ (items | async | itemFilterPipe:filtre:tType)?.length }} taches
   </div>
   <div class="level-right">
     <div class="control has-icons-right">

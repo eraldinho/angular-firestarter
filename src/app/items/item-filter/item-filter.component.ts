@@ -9,6 +9,7 @@ import { Item } from '../shared/item';
 export class ItemFilterComponent implements OnInit {
   @Input() items: [Item];
   filtre: string;
+  tType: string;
 
   constructor() { }
 
