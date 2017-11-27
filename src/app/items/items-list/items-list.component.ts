@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../shared/item.service';
 import { Item } from '../shared/item';
 import { Observable } from 'rxjs/Observable';
+import { ItemFilterComponent } from '../item-filter/item-filter.component'
 
 
 @Component({
@@ -13,6 +14,7 @@ export class ItemsListComponent implements OnInit {
 
   items: any // Observable<Item[]>;
   showSpinner = true;
+  @ViewChild(ItemFilterComponent) itemFilter;
 
 
 

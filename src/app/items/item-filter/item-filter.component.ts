@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Item } from '../shared/item';
 
 @Component({
   selector: 'item-filter',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-filter.component.scss']
 })
 export class ItemFilterComponent implements OnInit {
+  @Input() items: [Item];
+  filtre: string;
 
   constructor() { }
 
