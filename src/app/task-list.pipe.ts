@@ -60,10 +60,8 @@ export class TaskListPipe implements PipeTransform {
             nextTime = nextTime + 86400000;
           }
         }
-        console.log('bim ' + i);
         myitemsComplete.push(myitems[i]);
         if (i === myitems.length - 1) {
-          console.log('return');
           return (myitemsComplete);
         }
       }

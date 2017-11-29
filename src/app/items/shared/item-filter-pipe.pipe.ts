@@ -7,10 +7,8 @@ export class ItemFilterPipePipe implements PipeTransform {
 
   transform(items: Array<any>, filtre: string, type: string): Array<any> {
     if (items) {
-      console.log('montype   :' + type);
       return items.filter(item => {
         if (filtre && type) {
-          console.log('les deux');
           if (item.beCool || item.beQuick || item.beHurry) {
             return true;
           }else if (item.title.indexOf(filtre) === -1 || !item[type]) {
@@ -18,7 +16,6 @@ export class ItemFilterPipePipe implements PipeTransform {
           }
           return true;
         }else if (filtre) {
-          console.log('filtre');
           if (item.beCool || item.beQuick || item.beHurry) {
             return true;
           }else if (item.title.indexOf(filtre) === -1) {
@@ -26,8 +23,6 @@ export class ItemFilterPipePipe implements PipeTransform {
           }
           return true;
         }else if (type) {
-          console.log('badadadammontype');
-          console.log(item[type])
           if (item.beCool || item.beQuick || item.beHurry) {
             return true;
           }else if (!item[type]) {
