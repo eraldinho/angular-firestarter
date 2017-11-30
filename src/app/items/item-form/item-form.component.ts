@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Item } from '../shared/item';
 import { ItemService } from '../shared/item.service';
-import { DatePicker} from 'bulma-calendar/datepicker'
 
 @Component({
   selector: 'item-form',
@@ -13,20 +12,30 @@ import { DatePicker} from 'bulma-calendar/datepicker'
 export class ItemFormComponent implements OnInit {
 
   item: Item = new Item();
-  datePicker = new DatePicker( document.getElementById( 'datepicker' ), {} );
   allItemForm: FormGroup;
 
   constructor(private itemSvc: ItemService) { }
 
   ngOnInit() {
     this.allItemForm = new FormGroup({
-      'echeance': new FormControl()
-      /*'userData': new FormGroup({
-        'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails)
+      'titre': new FormControl(),
+      'echeance': new FormControl(),
+      'document': new FormControl(),
+      'sav': new FormGroup({
+        'contact': new FormGroup({
+          'nom': new FormControl(),
+          'email': new FormControl(),
+          'telephone': new FormControl()
+        }),
+        'materiel': new FormGroup({
+          'type': new FormControl(),
+          'panne': new FormControl(),
+          'motdepasse': new FormControl(),
+        }),
+        'intervention': new FormGroup({
+          'prestations': new FormArray([]),
+        }),
       }),
-      'gender': new FormControl('male'),
-      'hobbies': new FormArray([])*/
     });
   }
 
@@ -36,6 +45,11 @@ export class ItemFormComponent implements OnInit {
 
   onCancel() {
     document.getElementById('itemFormModal').classList.remove('is-active');
+  }
+
+  onAddPrestation() {
+    const control = new FormControl(null, Validators.required);
+    (<FormArray>this.allItemForm.get('sav.intervention.prestations')).push(control);
   }
 
   createItem() {
