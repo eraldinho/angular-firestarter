@@ -2,12 +2,39 @@
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
+      <div class="tabs is-boxed is-fullwidth" style="width: 100%">
+        <ul>
+          <li [ngClass]="{'is-active': descriptionSelected}" (click)="descriptionSelected = true; contactSelected = false; materielSelected = false; interventionSelected = false; commandesSelected = false">
+            <a>
+              <span>Description</span>
+            </a>
+          </li>
+          <li [ngClass]="{'is-active': contactSelected}" (click)="descriptionSelected = false; contactSelected = true; materielSelected = false; interventionSelected = false; commandesSelected = false">
+            <a>
+              <span>Contact</span>
+            </a>
+          </li>
+          <li [ngClass]="{'is-active': materielSelected}" (click)="descriptionSelected = false; contactSelected = false; materielSelected = true; interventionSelected = false; commandesSelected = false">
+            <a>
+              <span>Materiel</span>
+            </a>
+          </li>
+          <li [ngClass]="{'is-active': interventionSelected}" (click)="descriptionSelected = false; contactSelected = false; materielSelected = false; interventionSelected = true; commandesSelected = false">
+            <a>
+              <span>Intervention</span>
+            </a>
+          </li>
+          <li [ngClass]="{'is-active': commandesSelected}" (click)="descriptionSelected = false; contactSelected = false; materielSelected = false; interventionSelected = false; commandesSelected = true">
+            <a>
+              <span>Commandes</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
     <section class="modal-card-body">
-      <div class="tile is-ancestor">
-        <form [formGroup]="allItemForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="allItemForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="descriptionSelected">
           <label for="titre">Titre</label>
           <input
             type="text"
@@ -26,75 +53,71 @@
             id="document"
             formControlName="document"
             class="form-control input">
-          <hr>
-          <div formGroupName="sav">
-            <div formGroupName="contact">
-              <h5>Contact</h5>
-              <label for="nom">Nom</label>
-              <input
-                type="text"
-                id="nom"
-                formControlName="nom"
-                class="form-control input">
-              <label for="email">email</label>
-              <input
-                type="text"
-                id="email"
-                formControlName="email"
-                class="form-control input">
-              <label for="telephone">Téléphone</label>
-              <input
-                type="text"
-                id="telephone"
-                formControlName="telephone"
-                class="form-control input">
-            </div>
-            <hr>
-            <div formGroupName="materiel">
-              <h5>Matériel</h5>
-              <label for="type">Type</label>
-              <input
-                type="text"
-                id="type"
-                formControlName="type"
-                class="form-control input">
-              <textarea
-                id="panne"
-                formControlName="panne"
-                class="form-control input textarea"
-                placeholder="description de la panne"></textarea>
-              <label for="motdepasse">Mot de passe</label>
-              <input
-                type="text"
-                id="motdepasse"
-                formControlName="motdepasse"
-                class="form-control input">
-            </div>
-            <div formGroupName="intervention">
-              <div formArrayName="prestations">
-                <button
-                  class="button is-dark input"
-                  type="button"
-                  (click)="onAddPrestation()">Ajouter une prestation</button>
-                <div
-                  class="form-group"
-                  *ngFor="let prestationControl of allItemForm.get('sav.intervention.prestations').controls; let i = index">
-                  <div>
-                    <select class="form-control input">
-                      <option>prise en charge</option>
-                      <option>Installation OS pilotes MAJ</option>
-                      <option>Sauvegarde de données</option>
-                      <option>Dépousierage</option>
-                      <option>Montage de pièces détachées</option>
-                      <option>installation logiciel</option>
-                    </select>
-                  </div>
+        </div>
+        <div formGroupName="sav">
+          <div *ngIf="contactSelected" formGroupName="contact">
+            <label for="nom">Nom</label>
+            <input
+              type="text"
+              id="nom"
+              formControlName="nom"
+              class="form-control input">
+            <label for="email">email</label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="form-control input">
+            <label for="telephone">Téléphone</label>
+            <input
+              type="text"
+              id="telephone"
+              formControlName="telephone"
+              class="form-control input">
+          </div>
+          <div *ngIf="materielSelected" formGroupName="materiel">
+            <label for="type">Type</label>
+            <input
+              type="text"
+              id="type"
+              formControlName="type"
+              class="form-control input">
+            <textarea
+              id="panne"
+              formControlName="panne"
+              class="form-control input textarea"
+              placeholder="description de la panne"></textarea>
+            <label for="motdepasse">Mot de passe</label>
+            <input
+              type="text"
+              id="motdepasse"
+              formControlName="motdepasse"
+              class="form-control input">
+          </div>
+          <div *ngIf="interventionSelected" formGroupName="intervention">
+            <div formArrayName="prestations">
+              <button
+                class="button is-dark input"
+                type="button"
+                (click)="onAddPrestation()">Ajouter une prestation</button>
+              <div
+                class="form-group"
+                *ngFor="let prestationControl of allItemForm.get('sav.intervention.prestations').controls; let i = index">
+                <div>
+                  <select class="form-control input">
+                    <option>prise en charge</option>
+                    <option>Installation OS pilotes MAJ</option>
+                    <option>Sauvegarde de données</option>
+                    <option>Dépousierage</option>
+                    <option>Montage de pièces détachées</option>
+                    <option>installation logiciel</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" (click)="onSave()">Valider</button>

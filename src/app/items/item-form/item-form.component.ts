@@ -13,6 +13,12 @@ export class ItemFormComponent implements OnInit {
 
   item: Item = new Item();
   allItemForm: FormGroup;
+  descriptionSelected = true;
+  contactSelected = false;
+  materielSelected = false;
+  interventionSelected = false;
+  commandesSelected = false;
+
 
   constructor(private itemSvc: ItemService) { }
 
