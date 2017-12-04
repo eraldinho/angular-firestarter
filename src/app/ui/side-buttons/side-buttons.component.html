@@ -1,5 +1,5 @@
 <div class="tile is-ancestor">
-  <div class="tile is-parent is-vertical" style="spacing: 50px">
+  <div *ngIf="router.url == '/items'" class="tile is-parent is-vertical" style="spacing: 50px">
     <button class="button is-dark is-child" (click)="addTask()"><i class="material-icons">control_point</i>Tache</button>
     <button class="button is-danger is-child"><i class="material-icons">control_point</i>SAV</button>
     <button class="button is-info is-child"><i class="material-icons">control_point</i>Montage</button>
